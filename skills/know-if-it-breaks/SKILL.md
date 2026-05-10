@@ -1,51 +1,24 @@
 ---
 name: know-if-it-breaks
-description: Audit your app for blind spots in monitoring and recovery. Checks error handling, error monitoring (Sentry), uptime alerts, database backups, and version control.
+description: Audit for blind spots in monitoring and recovery -- error handling, error monitoring, uptime alerts, database backups, and version control.
 ---
 
-# Would you know if it breaks?
-
-Your app could be crashing right now and you would have no idea. No error tracking, no uptime alerts, no backups. Your users find the bugs before you do.
-
-## What this prompt checks
-
-- Error page handling (what users see when something breaks)
-- Error monitoring integration (Sentry or similar)
-- Uptime monitoring (does someone get alerted when the app goes down?)
-- Database backups (would you lose everything if the database breaks?)
-- Version control (can you undo a bad change?)
-
-## Prompt
-
-Audit this project for blind spots in monitoring and recovery. Check the following, in order of severity. For each one, tell me if it's a problem, why it matters, and what to do about it.
+Audit this project for blind spots in monitoring and recovery. Check the following in order of severity.
 
 1. ERROR HANDLING
-Visit a URL that doesn't exist in the app (e.g., /this-page-does-not-exist). What happens?
-- Does the app show a helpful error page with a way back to the homepage?
-- Does it crash, show a blank screen, or display raw error details?
-- Check if there's a custom 404 page or error boundary component.
+Visit a URL that doesn't exist in the app (e.g., /this-page-does-not-exist). Does it show a helpful error page or crash/blank/raw error?
 
 2. ERROR MONITORING
-Is there an error tracking service integrated (Sentry, LogRocket, Bugsnag, etc.)?
-- Search for Sentry DSN, error reporting initialization, or similar setup
-- If there's no error tracking, every bug happens silently -- users hit errors and leave, and you never know why
+Is there an error tracking service integrated (Sentry, LogRocket, Bugsnag)? Search for Sentry DSN, error reporting initialization, or similar setup.
 
 3. UPTIME MONITORING
-Is there anything that checks if the app is up and alerts you if it goes down?
-- Search for health check endpoints, uptime monitoring integrations, or cron-based pings
-- If not, the app could be down for hours before anyone notices
+Is there anything that checks if the app is up and alerts when it goes down? Search for health check endpoints, uptime monitoring integrations, or cron-based pings.
 
 4. DATABASE BACKUPS
-What database does this app use? Check the configuration:
-- If Supabase: is it on the free plan (no backups) or Pro plan (daily backups)?
-- If Firebase: are there scheduled exports configured?
-- If another DB: is there any backup strategy?
-- If there's no backup at all, one bad migration or accidental deletion means permanent data loss
+Check if automated backups are configured for the database provider in use. If Supabase, check if it's on the free plan (no backups) or Pro (daily backups). If Firebase, check for scheduled exports.
 
 5. VERSION CONTROL
-Is the code connected to GitHub or similar?
-- Check for .git directory, GitHub integration, deployment hooks
-- If the code only exists in the builder tool, one bad prompt could destroy the entire project with no way to recover
+Is the code connected to GitHub or similar? Check for .git directory, GitHub integration, deployment hooks.
 
 For each finding, report:
 - Number (1, 2, 3...)

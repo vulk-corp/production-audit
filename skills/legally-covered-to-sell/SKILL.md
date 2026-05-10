@@ -1,41 +1,18 @@
 ---
 name: legally-covered-to-sell
-description: Audit your app for legal risks before charging users. Checks for a published privacy policy, AI tool code ownership terms, and copyleft license dependencies (GPL, AGPL).
+description: Audit for legal risks before charging users -- privacy policy, AI tool code ownership terms, and copyleft license dependencies.
 ---
 
-# Are you legally covered to sell your app?
-
-You want to charge money for this. But do you have a privacy policy? Do you actually own the code your AI tool generated? Are any of your dependencies forcing you to open-source your entire app?
-
-## What this prompt checks
-
-- Privacy policy published and accessible from the app
-- Code ownership terms in your AI tool's terms of service
-- Dependencies with copyleft licenses (GPL, AGPL) that could force you to open-source your code
-
-## Prompt
-
-Audit this project for legal risks before I start charging users. Check the following, in order of severity. For each one, tell me if it's a problem, why it matters, and what to do about it.
+Audit this project for legal risks before charging users. Check the following in order of severity.
 
 1. PRIVACY POLICY
-Does this app have a privacy policy?
-- Check for a /privacy, /privacy-policy, or similar route
-- Check the footer and signup/login pages for a privacy policy link
-- If the app collects any user data (emails, names, usage data, analytics) and has no privacy policy, it's a legal liability in the EU (GDPR) and California (CCPA)
+Does this app have a privacy policy? Check for a /privacy or /privacy-policy route. Check the footer and signup/login pages for a link. If the app collects any user data and has no privacy policy, flag it.
 
 2. CODE OWNERSHIP
-What AI tools were used to build this app?
-- Check for signs of Lovable, Bolt, v0, Replit, Cursor, or other AI builder tools
-- Review the terms of service of each tool used -- do they grant full ownership of generated code?
-- Flag any tool whose terms retain rights to the code, use it for training, or restrict commercial use
-- If you can't determine ownership clearly, flag it as a risk
+What AI tools were used to build this app? Check for signs of Lovable, Bolt, v0, Replit, Cursor. Do their terms of service grant full ownership of generated code? Flag any tool whose terms retain rights, use code for training, or restrict commercial use.
 
 3. COPYLEFT DEPENDENCIES
-Scan package.json (and any lock files) for dependencies with copyleft licenses:
-- GPL, AGPL, LGPL, MPL, or similar licenses
-- These licenses can require you to release your entire source code under the same license
-- For a commercial product you plan to sell, this means you'd have to give away your code
-- Check both direct dependencies and significant transitive dependencies
+Scan package.json and lock files for dependencies with copyleft licenses (GPL, AGPL, LGPL, MPL). These can require you to release your source code under the same license. Check both direct and significant transitive dependencies.
 
 For each finding, report:
 - Number (1, 2, 3...)
