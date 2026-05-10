@@ -1,6 +1,6 @@
 ---
 name: audit-legal
-description: Audit for legal risks before charging users -- privacy policy, AI tool code ownership terms, and copyleft license dependencies.
+description: Audit for legal risks before charging users. Checks privacy policy, AI tool code ownership terms by plan, and copyleft license dependencies.
 ---
 
 Audit this project for legal risks before charging users. Check the following in order of severity.
@@ -9,7 +9,12 @@ Audit this project for legal risks before charging users. Check the following in
 Does this app have a privacy policy? Check for a /privacy or /privacy-policy route. Check the footer and signup/login pages for a link. If the app collects any user data and has no privacy policy, flag it.
 
 2. CODE OWNERSHIP
-What AI tools were used to build this app? Check for signs of Lovable, Bolt, v0, Replit, Cursor. Do their terms of service grant full ownership of generated code? Flag any tool whose terms retain rights, use code for training, or restrict commercial use.
+Based on this project's framework and dependencies, identify which AI builder tools were likely used to generate it. For each one:
+- What are the exact code ownership terms on my current plan? Do I own the code outright?
+- Does the tool retain any rights to the generated code?
+- Can it use my code for training?
+- Are there restrictions on commercial use or resale?
+- If terms differ by plan (free vs paid), tell me which plan grants full ownership
 
 3. COPYLEFT DEPENDENCIES
 Scan package.json and lock files for dependencies with copyleft licenses (GPL, AGPL, LGPL, MPL). These can require you to release your source code under the same license. Check both direct and significant transitive dependencies.

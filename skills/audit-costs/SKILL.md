@@ -1,24 +1,25 @@
 ---
 name: audit-costs
-description: Audit for cost explosion risks -- AI provider spending limits, hosting caps, per-user rate limits, and spam protection.
+description: Audit for cost explosion risks. Checks AI provider spending limits, hosting caps, per-user rate limits, and spam protection. Redirects to provider dashboards when settings can't be verified from code.
 ---
 
-Audit this project for cost explosion risks. Check the following in order of severity.
+Audit this project for cost explosion risks. Check the following in order of severity. Some of these settings live in provider dashboards, not in code. When you can't verify something from the codebase, tell me exactly where to check (which dashboard, which settings page, which URL) and what questions I need to answer.
 
 1. AI PROVIDER COSTS
-Does this app call any AI APIs (OpenAI, Anthropic, Google AI, Replicate)? If yes:
-- Are there spending limits or budget alerts set up with the provider?
-- Can a single user trigger unlimited AI calls?
-- What's the estimated cost per request and what happens at 10,000 requests?
+Identify which AI APIs this app calls (OpenAI, Anthropic, Google AI, Replicate, etc.). For each one:
+- Check the code for any request-level cost controls (token limits, max retries, timeout)
+- Can a single user trigger unlimited AI calls (e.g., by spamming a button or looping requests)?
+- Spending limits and budget alerts are set in the provider dashboard, not in code. Tell me exactly where to check: for OpenAI it's platform.openai.com/settings/organization/limits, for Anthropic it's console.anthropic.com/settings/limits. Ask me to confirm whether I have limits set.
 
 2. HOSTING COSTS
-What hosting platform is this deployed on? Check for:
+Identify the hosting platform from the codebase (Vercel, Netlify, Railway, etc.). Check for:
 - Serverless functions that could be triggered at scale
-- Bandwidth-heavy operations with no limits
-- Database operations that scale with usage on pay-per-use plans
+- Bandwidth-heavy operations (file uploads, streaming) with no limits
+- Database operations on pay-per-use plans
+- Spending caps are configured in the hosting dashboard, not in code. Tell me exactly where to find them for my platform and ask me to confirm.
 
 3. PER-USER LIMITS
-Check if the app has per-user rate limiting:
+Check if the app has per-user rate limiting in the code:
 - Can one user make unlimited requests to expensive endpoints?
 - Is there a daily or monthly cap per user?
 - Is there any usage tracking in the database?

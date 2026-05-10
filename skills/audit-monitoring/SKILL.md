@@ -1,24 +1,37 @@
 ---
 name: audit-monitoring
-description: Audit for blind spots in monitoring and recovery -- error handling, error monitoring, uptime alerts, database backups, and version control.
+description: Audit for blind spots in monitoring and recovery. Checks error handling, error monitoring, uptime alerts, database backups, and version control. Asks questions when settings can't be verified from code.
 ---
 
-Audit this project for blind spots in monitoring and recovery. Check the following in order of severity.
+Audit this project for blind spots in monitoring and recovery. Check the following in order of severity. Some of these can be verified from code, others can't. When you can't verify something from the codebase, tell me exactly where to check and ask me to confirm.
 
 1. ERROR HANDLING
-Visit a URL that doesn't exist in the app (e.g., /this-page-does-not-exist). Does it show a helpful error page or crash/blank/raw error?
+Check if the app has a custom 404 page or error boundary component.
+- What happens when a user visits a URL that doesn't exist?
+- Does it show a helpful error page or crash/blank/raw error?
 
 2. ERROR MONITORING
-Is there an error tracking service integrated (Sentry, LogRocket, Bugsnag)? Search for Sentry DSN, error reporting initialization, or similar setup.
+Search the codebase for error tracking integration (Sentry, LogRocket, Bugsnag):
+- Look for Sentry DSN, error reporting initialization, or similar setup
+- If nothing is found, flag it
 
 3. UPTIME MONITORING
-Is there anything that checks if the app is up and alerts when it goes down? Search for health check endpoints, uptime monitoring integrations, or cron-based pings.
+This can't be fully verified from code. Check for health check endpoints or monitoring SDK integration. Then ask me:
+- Do you use an uptime monitoring service (UptimeRobot, Pingdom, Better Uptime)?
+- Does anyone get alerted when your app goes down?
+If I don't have uptime monitoring, tell me the simplest free options to set up.
 
 4. DATABASE BACKUPS
-Check if automated backups are configured for the database provider in use. If Supabase, check if it's on the free plan (no backups) or Pro (daily backups). If Firebase, check for scheduled exports.
+Identify the database from the codebase (Supabase, Firebase, PlanetScale, etc.). Backup settings live in the provider dashboard, not in code. Tell me exactly where to check:
+- Supabase: dashboard.supabase.com > Project Settings > Database > Backups (free plan has no backups, Pro has daily)
+- Firebase: console.firebase.google.com > Project Settings > Backups
+- Other providers: tell me where to look
+Ask me to confirm whether backups are enabled.
 
 5. VERSION CONTROL
-Is the code connected to GitHub or similar? Check for .git directory, GitHub integration, deployment hooks.
+Check for a .git directory or GitHub integration in the project. If the code only exists inside the builder tool, ask me:
+- Is this project connected to GitHub?
+- If not, walk me through how to connect it
 
 For each finding, report:
 - Number (1, 2, 3...)
