@@ -1,5 +1,5 @@
 ---
-name: legally-covered-to-sell
+name: audit-legal
 description: Audit for legal risks before charging users -- privacy policy, AI tool code ownership terms, and copyleft license dependencies.
 ---
 

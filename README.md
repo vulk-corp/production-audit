@@ -8,12 +8,12 @@ Built by [BWORLDS](https://www.bworlds.co) -- the production team for AI app bui
 
 | # | Prompt | What it audits |
 |---|--------|----------------|
-| 1 | [Is your app leaking private stuff?](skills/leaking-private-stuff/SKILL.md) | API keys in client code, database security rules, data over-exposure |
-| 2 | [Can strangers walk into your app?](skills/strangers-walk-in/SKILL.md) | Authentication, unprotected routes, IDOR, input validation, roles |
-| 3 | [Could your costs explode overnight?](skills/costs-explode/SKILL.md) | AI spending caps, hosting limits, per-user rate limits, spam protection |
-| 4 | [Would you know if it breaks?](skills/know-if-it-breaks/SKILL.md) | Error handling, monitoring, uptime alerts, backups, version control |
-| 5 | [Are you legally covered to sell your app?](skills/legally-covered-to-sell/SKILL.md) | Privacy policy, code ownership, copyleft dependencies |
-| 6 | [Is your codebase a mess?](skills/codebase-a-mess/SKILL.md) | File size, god components, duplicated logic, naming, structure |
+| 1 | [Is your app leaking private stuff?](skills/audit-secrets/SKILL.md) | API keys in client code, database security rules, data over-exposure |
+| 2 | [Can strangers walk into your app?](skills/audit-access/SKILL.md) | Authentication, unprotected routes, IDOR, input validation, roles |
+| 3 | [Could your costs explode overnight?](skills/audit-costs/SKILL.md) | AI spending caps, hosting limits, per-user rate limits, spam protection |
+| 4 | [Would you know if it breaks?](skills/audit-monitoring/SKILL.md) | Error handling, monitoring, uptime alerts, backups, version control |
+| 5 | [Are you legally covered to sell your app?](skills/audit-legal/SKILL.md) | Privacy policy, code ownership, copyleft dependencies |
+| 6 | [Is your codebase a mess?](skills/audit-code-quality/SKILL.md) | File size, god components, duplicated logic, naming, structure |
 
 ## Install
 

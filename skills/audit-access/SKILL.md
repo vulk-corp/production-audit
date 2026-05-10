@@ -1,5 +1,5 @@
 ---
-name: strangers-walk-in
+name: audit-access
 description: Audit for unauthorized access -- authentication, unprotected routes, IDOR, input validation, and role-based permissions.
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: know-if-it-breaks
+name: audit-monitoring
 description: Audit for blind spots in monitoring and recovery -- error handling, error monitoring, uptime alerts, database backups, and version control.
 ---
 

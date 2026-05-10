@@ -1,5 +1,5 @@
 ---
-name: leaking-private-stuff
+name: audit-secrets
 description: Audit for exposed secrets, open databases, and data over-exposure in client-side code.
 ---
 

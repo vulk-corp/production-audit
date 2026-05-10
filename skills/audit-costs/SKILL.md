@@ -1,5 +1,5 @@
 ---
-name: costs-explode
+name: audit-costs
 description: Audit for cost explosion risks -- AI provider spending limits, hosting caps, per-user rate limits, and spam protection.
 ---
 

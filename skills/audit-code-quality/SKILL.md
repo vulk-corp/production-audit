@@ -1,5 +1,5 @@
 ---
-name: codebase-a-mess
+name: audit-code-quality
 description: Audit codebase for quality issues that break AI tools -- file sizes, god components, duplicated logic, naming consistency, separation of concerns.
 ---
 
